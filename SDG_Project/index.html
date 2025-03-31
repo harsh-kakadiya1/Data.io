@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Synthetic Data Generator</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/faker/5.5.3/faker.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="index.css">
+    <style>
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo-icon {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.25rem;
+            position: relative;
+            width: 24px;
+            height: 24px;
+        }
+
+        .logo-icon .disk {
+            width: 24px;
+            height: 6px;
+            border-radius: 3px;
+            background-color: var(--primary-blue);
+            position: absolute;
+            transition: transform 0.3s ease;
+        }
+
+        .logo-icon .disk:nth-child(1) {
+            top: 0;
+            background-color: var(--primary-blue);
+        }
+
+        .logo-icon .disk:nth-child(2) {
+            top: 9px;
+            background-color: var(--secondary-blue);
+        }
+
+        .logo-icon .disk:nth-child(3) {
+            top: 18px;
+            background-color: var(--light-blue);
+        }
+
+        .logo h1 {
+            font-size: 1.5rem;
+            color: var(--primary-blue);
+            margin: 0;
+        }
+
+        /* Add smooth transitions */
+        .logo:hover .disk:nth-child(1) {
+            transform: translateY(-2px);
+        }
+
+        .logo:hover .disk:nth-child(2) {
+            transform: translateY(-2px);
+        }
+
+        .logo:hover .disk:nth-child(3) {
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    <header class="main-header">
+        <div class="header-content">
+            <div class="logo">
+                <div class="logo-icon">
+                    <div class="disk"></div>
+                    <div class="disk"></div>
+                    <div class="disk"></div>
+                </div>
+                <h1>Synthetic Data Generator</h1>
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html" class="active">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="features.html">Features</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="container">
+            <div class="error" id="errorMessage"></div>
+            
+            <div class="form-group">
+                <label for="schemaSelect">Select Schema</label>
+                <select id="schemaSelect">
+                    <option value="" disabled selected>Choose data type</option>
+                    <option value="medical">Medical</option>
+                    <option value="finance">Finance</option>
+                    <option value="retail">Retail</option>
+                    <option value="education">Education</option>
+                    <option value="automotive">Automotive</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="localitySelect">Select Locality</label>
+                <select id="localitySelect">
+                    <option value="" disabled selected>Choose locality</option>
+                    <option value="india">India</option>
+                    <option value="usa">United States</option>
+                    <option value="uk">United Kingdom</option>
+                    <option value="canada">Canada</option>
+                    <option value="australia">Australia</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="numRecords">Number of Records</label>
+                <input type="number" id="numRecords" min="1" max="10000" value="100">
+            </div>
+            
+            <div class="form-group">
+                <label>Select Columns</label>
+                <div class="select-all-container">
+                    <label class="column-checkbox">
+                        <input type="checkbox" id="selectAll">
+                        Select All
+                    </label>
+                </div>
+                <div class="column-select" id="columnSelect"></div>
+            </div>
+            
+            <button id="generateBtn" class="generate-btn">
+                <i class="fas fa-sync-alt"></i> Generate Synthetic Data
+            </button>
+            
+            <div class="loading" id="loading">
+                <div class="spinner"></div>
+                <p>Generating data...</p>
+            </div>
+            
+            <div class="results" id="results">
+                <div class="results-header">
+                    <h2>Generated Data</h2>
+                    <div class="download-btns">
+                        <button class="download-btn csv-btn" id="downloadCsvBtn">
+                            <i class="fas fa-file-csv"></i> Download CSV
+                        </button>
+                        <button class="download-btn json-btn" id="downloadJsonBtn">
+                            <i class="fas fa-file-code"></i> Download JSON
+                        </button>
+                        <button class="download-btn excel-btn" id="downloadExcelBtn">
+                            <i class="fas fa-file-excel"></i> Download Excel
+                        </button>
+                    </div>
+                </div>
+                <div class="table-container">
+                    <table id="dataTable">
+                        <thead>
+                            <tr id="tableHeader"></tr>
+                        </thead>
+                        <tbody id="tableBody"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="main-footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About Us</h3>
+                <p>Synthetic Data Generator is a powerful tool designed to help developers, researchers, and data scientists generate realistic synthetic data for various domains.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Features</h3>
+                <ul>
+                    <li>Multiple data schemas</li>
+                    <li>Locality-based data generation</li>
+                    <li>Customizable fields</li>
+                    <li>Multiple export formats</li>
+                    <li>Bulk data generation</li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact</h3>
+                <ul>
+                    <li><i class="fas fa-envelope"></i> harshkakadiya128@gmail.com</li>
+                    <li><i class="fas fa-envelope"></i> krishkunjadiya1@gmail.com</li>
+                    <li><i class="fas fa-phone"></i> +91 9104332333</li>
+                    <li><i class="fas fa-map-marker-alt"></i> Charusat Campus, 388421</li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Follow Us</h3>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-github"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2025 Synthetic Data Generator | Created by Harsh Kakadiya and Krish Kunjadiya</p>
+        </div>
+    </footer>
+
+    <script src="index.js"></script>
+</body>
+</html>
