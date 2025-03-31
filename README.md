@@ -13,7 +13,7 @@ The **Synthetic Data Generator** is a powerful tool for generating artificial da
 ## Installation
 ```sh
 # Clone the repository
-git clone https://github.com/yourusername/synthetic-data-generator.git
+git clone https://github.com/harshjajaknavagscrr/synthetic-data-generator.git
 cd synthetic-data-generator
 
 # Install dependencies
@@ -51,7 +51,7 @@ python generate.py --format json # Outputs a JSON file
 ```
 
 ## Dependencies
-- Python 3.7+
+- Python 3.5 +
 - Pandas
 - Faker
 - NumPy
@@ -63,5 +63,5 @@ Contributions are welcome! Please fork the repository and submit a pull request.
 This project is licensed under the MIT License.
 
 ## Contact
-For issues or suggestions, please open an issue on GitHub or reach out at [your.email@example.com](mailto:your.email@example.com).
+For issues or suggestions, please open an issue on GitHub or reach out at [contactxsynthetic@gmail.com](mailto:contactxsynthetic@gmail.com).
 
