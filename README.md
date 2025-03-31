@@ -1,5 +1,5 @@
 # Synthetic Data Generator
-
+![image](https://github.com/user-attachments/assets/94a96024-c1aa-4a60-93d9-88a0c9d13311)
 ## Overview
 The **Synthetic Data Generator** is a powerful tool for generating artificial datasets that mimic real-world data. It is useful for machine learning, testing, and data privacy applications where real data cannot be used.
 
