@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Features - DataMimic.io</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="index.css">
+    <style>
+        .features-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .feature-section {
+            background-color: var(--white);
+            border-radius: 8px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-section h2 {
+            color: var(--primary-blue);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .feature-section h2 i {
+            font-size: 1.5rem;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .feature-card {
+            background-color: var(--light-blue);
+            padding: 1.5rem;
+            border-radius: 8px;
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-card h3 {
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .feature-card p {
+            margin-bottom: 0.5rem;
+        }
+
+        .feature-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .feature-list li {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .feature-list li i {
+            color: var(--primary-blue);
+        }
+
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            background-color: var(--primary-blue);
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 4px;
+            margin-bottom: 2rem;
+            transition: background-color 0.3s ease;
+        }
+
+        .back-button:hover {
+            background-color: var(--dark-blue);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo-icon {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.25rem;
+            position: relative;
+            width: 24px;
+            height: 24px;
+        }
+
+        .logo-icon .disk {
+            width: 24px;
+            height: 6px;
+            border-radius: 3px;
+            background-color: var(--primary-blue);
+            position: absolute;
+            transition: transform 0.3s ease;
+        }
+
+        .logo-icon .disk:nth-child(1) {
+            top: 0;
+            background-color: var(--primary-blue);
+        }
+
+        .logo-icon .disk:nth-child(2) {
+            top: 9px;
+            background-color: var(--secondary-blue);
+        }
+
+        .logo-icon .disk:nth-child(3) {
+            top: 18px;
+            background-color: var(--light-blue);
+        }
+
+        .logo h1 {
+            font-size: 1.5rem;
+            color: var(--primary-blue);
+            margin: 0;
+        }
+
+        /* Add smooth transitions */
+        .logo:hover .disk:nth-child(1) {
+            transform: translateY(-2px);
+        }
+
+        .logo:hover .disk:nth-child(2) {
+            transform: translateY(-2px);
+        }
+
+        .logo:hover .disk:nth-child(3) {
+            transform: translateY(-2px);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-links a {
+            color: var(--gray);
+            font-size: 1.5rem;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .social-links a:hover {
+            color: var(--primary-blue);
+        }
+
+        .tooltip {
+            position: relative;
+        }
+
+        .tooltip::before {
+            content: attr(data-tooltip);
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 0.5rem;
+            background-color: var(--dark-blue);
+            color: var(--white);
+            border-radius: 4px;
+            font-size: 0.875rem;
+            white-space: nowrap;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .tooltip:hover::before {
+            opacity: 1;
+            visibility: visible;
+        }
+    </style>
+</head>
+<body>
+    <div class="site-bg-blobs">
+        <div class="site-blob site-blob-blue"></div>
+        <div class="site-blob site-blob-orange"></div>
+        <div class="site-blob site-blob-blue-bottom"></div>
+    </div>
+    <div class="site-bg-grid"></div>
+    <header class="main-header">
+        <div class="header-content">
+            <div class="logo">
+                <div class="logo-icon">
+                    <div class="disk"></div>
+                    <div class="disk"></div>
+                    <div class="disk"></div>
+                </div>
+                <h1>DataMimic.io</h1>
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="home.html">Home</a></li>
+                    <li><a href="index.html">Generator</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="features.html" class="active">Features</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="container">
+            <a href="home.html" class="back-button">
+                <i class="fas fa-arrow-left"></i> Back to Home
+            </a>
+
+            <div class="features-content">
+                <div class="feature-section">
+                    <h2><i class="fas fa-database"></i> Data Generation Capabilities</h2>
+                    <p>Our Synthetic Data Generator offers a wide range of capabilities to create realistic synthetic data for various domains and use cases.</p>
+                    
+                    <div class="feature-grid">
+                        <div class="feature-card">
+                            <h3><i class="fas fa-table"></i> Multiple Data Schemas</h3>
+                            <p>Choose from a variety of pre-defined data schemas tailored for different industries:</p>
+                            <ul class="feature-list">
+                                <li><i class="fas fa-check"></i> Medical Records</li>
+                                <li><i class="fas fa-check"></i> Financial Transactions</li>
+                                <li><i class="fas fa-check"></i> Retail Sales</li>
+                                <li><i class="fas fa-check"></i> Educational Records</li>
+                                <li><i class="fas fa-check"></i> Automotive Data</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="feature-card">
+                            <h3><i class="fas fa-globe"></i> Locality-Based Generation</h3>
+                            <p>Generate data that matches the characteristics of different regions:</p>
+                            <ul class="feature-list">
+                                <li><i class="fas fa-check"></i> India</li>
+                                <li><i class="fas fa-check"></i> United States</li>
+                                <li><i class="fas fa-check"></i> United Kingdom</li>
+                                <li><i class="fas fa-check"></i> Canada</li>
+                                <li><i class="fas fa-check"></i> Australia</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="feature-card">
+                            <h3><i class="fas fa-sliders-h"></i> Customizable Fields</h3>
+                            <p>Select which fields to include in your generated data:</p>
+                            <ul class="feature-list">
+                                <li><i class="fas fa-check"></i> Choose specific columns</li>
+                                <li><i class="fas fa-check"></i> Select all fields at once</li>
+                                <li><i class="fas fa-check"></i> Mix and match fields</li>
+                                <li><i class="fas fa-check"></i> Control data volume</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="feature-section">
+                    <h2><i class="fas fa-file-export"></i> Export Options</h2>
+                    <p>Download your generated data in multiple formats to suit your needs.</p>
+                    
+                    <div class="feature-grid">
+                        <div class="feature-card">
+                            <h3><i class="fas fa-file-csv"></i> CSV Format</h3>
+                            <p>Export your data as a CSV file, perfect for spreadsheet applications and data analysis tools.</p>
+                        </div>
+                        
+                        <div class="feature-card">
+                            <h3><i class="fas fa-file-code"></i> JSON Format</h3>
+                            <p>Download your data as a JSON file, ideal for web applications and API development.</p>
+                        </div>
+                        
+                        <div class="feature-card">
+                            <h3><i class="fas fa-file-excel"></i> Excel Format</h3>
+                            <p>Get your data in Excel format, ready for business intelligence and reporting.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="feature-section">
+                    <h2><i class="fas fa-chart-line"></i> Data Quality Controls</h2>
+                    <p>Fine-tune your synthetic data to match real-world data characteristics.</p>
+                    
+                    <div class="feature-grid">
+                        <div class="feature-card">
+                            <h3><i class="fas fa-question-circle"></i> Missing Values Control</h3>
+                            <p>Simulate real-world data incompleteness:</p>
+                            <ul class="feature-list">
+                                <li><i class="fas fa-check"></i> Adjust missing value ratio (0-100%)</li>
+                                <li><i class="fas fa-check"></i> Visual indicators for missing data</li>
+                                <li><i class="fas fa-check"></i> Statistics on missing values</li>
+                                <li><i class="fas fa-check"></i> Proper handling in exports</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="feature-card">
+                            <h3><i class="fas fa-random"></i> Data Variance Control</h3>
+                            <p>Control the diversity in your numeric data:</p>
+                            <ul class="feature-list">
+                                <li><i class="fas fa-check"></i> Adjust variance ratio (0-100%)</li>
+                                <li><i class="fas fa-check"></i> Visual indicators for variance levels</li>
+                                <li><i class="fas fa-check"></i> Statistics on data distribution</li>
+                                <li><i class="fas fa-check"></i> Realistic data patterns</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="feature-card">
+                            <h3><i class="fas fa-chart-bar"></i> Data Analytics</h3>
+                            <p>Gain insights into your generated data:</p>
+                            <ul class="feature-list">
+                                <li><i class="fas fa-check"></i> Overall data statistics</li>
+                                <li><i class="fas fa-check"></i> Column-specific metrics</li>
+                                <li><i class="fas fa-check"></i> Missing value analysis</li>
+                                <li><i class="fas fa-check"></i> Variance distribution</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="feature-section">
+                    <h2><i class="fas fa-mobile-alt"></i> User Experience</h2>
+                    <p>Our tool is designed with user experience in mind, making data generation simple and intuitive.</p>
+                    
+                    <div class="feature-grid">
+                        <div class="feature-card">
+                            <h3><i class="fas fa-desktop"></i> Responsive Design</h3>
+                            <p>Use our tool on any device, from desktop computers to mobile phones.</p>
+                        </div>
+                        
+                        <div class="feature-card">
+                            <h3><i class="fas fa-bolt"></i> Fast Generation</h3>
+                            <p>Generate thousands of records in seconds with our optimized algorithms.</p>
+                        </div>
+                        
+                        <div class="feature-card">
+                            <h3><i class="fas fa-paint-brush"></i> Modern Interface</h3>
+                            <p>Enjoy a clean, modern interface with intuitive controls and visual feedback.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="main-footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About Us</h3>
+                <p>DataMimic.io is a powerful tool designed to help developers, researchers, and data scientists generate realistic synthetic data for various domains.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Features</h3>
+                <ul>
+                    <li>Multiple data schemas</li>
+                    <li>Locality-based data generation</li>
+                    <li>Customizable fields</li>
+                    <li>Multiple export formats</li>
+                    <li>Bulk data generation</li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact</h3>
+                <ul>
+                    <li><i class="fas fa-envelope"></i> datamimic.io@gmail.com</li>
+                    <li><i class="fas fa-phone"></i> +91 9104332333</li>
+                    <li><i class="fas fa-map-marker-alt"></i> Charusat Campus, 388421</li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Follow Us</h3>
+                <div class="social-links">
+                    <a href="https://github.com/harshkakadiya" class="tooltip" data-tooltip="Harsh's GitHub">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="https://github.com/Krish-kunjadiya" class="tooltip" data-tooltip="Krish's GitHub">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/harsh-kakadiya/" class="tooltip" data-tooltip="Harsh's LinkedIn">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/krish-kunjadiya-845041285" class="tooltip" data-tooltip="Krish's LinkedIn">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2025 DataMimic.io | Created by Harsh Kakadiya and Krish Kunjadiya</p>
+        </div>
+    </footer>
+</body>
+</html> 
